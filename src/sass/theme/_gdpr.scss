@@ -1,0 +1,66 @@
+body.gdpr-infobar-visible {
+	height: 100vh;
+	overflow: hidden;
+}
+#moove_gdpr_cookie_info_bar#moove_gdpr_cookie_info_bar {
+	max-height: unset;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba($dark, .6);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.moove-gdpr-info-bar-container {
+        background-color: $dark;
+		padding: $spacer*3 $spacer;
+		width: 90%;
+		max-width: 420px;
+        box-shadow: $box-shadow;
+
+		.moove-gdpr-info-bar-content {
+			flex-direction: column;
+			gap: $spacer/2;
+			text-align: center;
+
+			p {
+				margin-bottom: $spacer;
+			}
+
+            button.mgbutton.moove-gdpr-infobar-allow-all {
+                background-color: $primary;
+            }
+		}
+	}
+
+    &.moove-gdpr-light-scheme {
+
+        .moove-gdpr-info-bar-container {
+            background-color: $light;
+        }
+    }
+
+    .moove-gdpr-button-holder {
+		justify-content: center;
+		flex-direction: row-reverse;
+        padding-left: 0;
+	}
+}
+#moove_gdpr_cookie_modal#moove_gdpr_cookie_modal {
+    
+    .moove-gdpr-modal-content {
+        
+        .moove-gdpr-modal-footer-content {
+            
+            .moove-gdpr-button-holder {
+	            flex-direction: row-reverse;
+
+                // button.mgbutton {
+                //     background-color: $primary;
+                // }
+            }
+        }
+    }
+}

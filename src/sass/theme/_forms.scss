@@ -1,0 +1,67 @@
+.wpcf7 {
+    max-width: 100% !important;
+    
+    label {
+        font-size: $font-size-sm;
+    }
+    
+    .wpcf7-response-output {
+        height: auto !important;
+    }
+    
+    .form-control-sm {
+        height: auto;
+    }
+    
+    
+    input[type=checkbox] {
+        width: 2rem;
+        height: 2rem;
+        background-color: white;
+        border-radius: 50%;
+        vertical-align: middle;
+        border: 1px solid $body-color;
+        margin-right: $spacer * .5;
+        appearance: none;
+        -webkit-appearance: none;
+        outline: none;
+        cursor: pointer;
+    
+        &:hover,
+        &:focus,
+        &:active,
+        &:checked:hover {
+          background-color: $light;
+        }
+    
+        &:checked {
+          background: url('../img/icono-check.svg') no-repeat center;
+        }
+      }
+
+      .wpcf7-acceptance {
+
+        .wpcf7-list-item {
+          margin-left: 0;
+        }
+      }
+
+      input[type=submit] {
+        @extend .btn-dark;
+        color: $white;
+        transition: $transition-base;
+    
+        &:disabled {
+            background-color: $dark;
+            color: $white;
+            opacity: .2;
+        }
+    
+        &:hover {
+            background-color: $dark;
+            opacity: .8;
+            color: $white;
+        }
+      }    
+    
+}

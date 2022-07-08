@@ -1,0 +1,116 @@
+body.understrap-no-sidebar {
+
+    .alignwide {
+        margin: 0 calc(50% - 37vw);
+        max-width: 74vw;
+
+        @include media-breakpoint-down(lg) {
+            margin: 0 calc(50% - 50vw);
+            max-width: 100vw;    
+        }
+    }
+}
+
+@media ( max-width: 1920px ) {
+    body.understrap-no-sidebar .wp-block-media-text.alignwide {
+        margin: 0 calc(50% - 50vw);
+        max-width: 100vw;    
+    }
+}
+
+#main > article > .entry-content > *:first-child,
+#main > .wp-block-cover:first-child {
+    padding-top: 10rem !important;
+}
+
+.wp-block-group, 
+.wp-block-cover {
+
+	&.alignfull, 
+    &.alignwide {
+		padding: $spacer * 2 0;
+	}
+}
+
+
+
+.btn,
+.wp-block-button__link {
+    font-family: $btn-font-family;
+    font-weight: $btn-font-weight;
+    background-color: $primary;
+}
+
+.wp-block-buttons {
+
+    .wp-block-button {
+
+        &.is-style-arrow-link {
+ 
+            .wp-block-button__link {
+                background-color: transparent;
+                padding-left: 0;
+                padding-right: 5rem;
+                border-color: transparent;
+                position: relative;
+                text-align: left;
+                color: $body-color;
+
+                &:after {
+                    content: "";
+                    display: block;
+                    width: 3rem;
+                    height: 3rem;
+                    mask-image: url('../img/flecha-derecha.svg');
+                    mask-repeat: no-repeat;
+                    mask-position: center;
+                    background-color: $primary;
+                    
+                    position: absolute;
+                    right: 1rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    transition: $transition-base;
+                }
+
+                &:hover:after {
+                    right: 0;
+                }
+            }
+
+        }
+
+    }
+}
+
+.wp-block-columns {
+    gap: $grid-gutter-width;
+    margin-bottom: $grid-gutter-width;
+
+    &.is-style-gapless {
+        @include media-breakpoint-up(md) {
+            gap: 0;
+        }
+    }
+}
+
+@include media-breakpoint-down(xs) {
+
+	.wp-block-spacer {
+		max-height: $spacer * 2;
+	}
+
+}
+
+.redes-sociales {
+	display: flex;
+	width: 100%;
+	align-items: center;
+
+	.red-social {
+		font-size: 2rem;
+		margin-right: 1rem;
+	}
+
+}
+

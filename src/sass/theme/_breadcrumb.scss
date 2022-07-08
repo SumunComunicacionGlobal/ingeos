@@ -1,0 +1,13 @@
+.breadcrumb {
+    @extend .alignfull;
+    margin-bottom: $spacer * 3 !important;
+
+    .breadcrumb-inner {
+        @include make-container();
+        @include make-container-max-widths();
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,49 @@
+.slick-prev,
+.slick-next {
+	z-index: 1;
+	top: unset;
+	bottom: -$spacer*1.5;
+	width: $spacer;
+	height: $spacer;
+
+	&:before {
+		font-size: $spacer;
+		color: $black;
+	}
+}
+
+.slick-prev {
+	left: unset;
+	right: $spacer*1.2;
+}
+
+.slick-next {
+	right: 0;
+}
+
+.slick-carousel {
+	position: relative;
+	padding-bottom: $spacer * 2;
+
+	.slick-list {
+		margin: 0 -$grid-gutter-width/2;
+		padding-right: 100px;
+
+		@include media-breakpoint-up(md) {
+			padding-right: 70px;
+		}
+
+		// @include media-breakpoint-up(md) {
+		// 	padding-right: 10%;
+		// }
+	}
+
+	.slick-slide {
+		margin: 0 $grid-gutter-width/2;
+		transition: $transition-fade;
+
+		&:not(.slick-active) {
+			opacity: .5;
+		}
+	}
+}
