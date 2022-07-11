@@ -17,3 +17,5 @@ npm-debug.log
 .DS_Store
 
 ._.DS_Store
+
+/src/build/browser-sync.config.js

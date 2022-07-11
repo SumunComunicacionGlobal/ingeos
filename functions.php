@@ -17,14 +17,20 @@ $understrap_includes = array(
     '/smn-customizer.php',
     '/smn-template-tags.php',
     '/smn-shortcodes.php',
-    '/smn-acf.php',
     '/smn-blocks.php',
-    '/smn-gdpr-cookies.php',
 );
 
 // Load WooCommerce functions if WooCommerce is activated.
 if ( class_exists( 'WooCommerce' ) ) {
     $understrap_includes[] = '/smn-woocommerce.php';
+}
+
+if (!class_exists('ACF')) {
+    $understrap_includes[] = '/smn-acf.php';
+}
+
+if ( function_exists( 'gdpr_cookie_is_accepted' ) ) {
+    $understrap_includes[] = '/smn-moove-gdpr-cookies.php';
 }
 
 // Include files.
