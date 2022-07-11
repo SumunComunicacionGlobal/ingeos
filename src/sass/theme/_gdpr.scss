@@ -48,6 +48,7 @@ body.gdpr-infobar-visible {
         padding-left: 0;
 	}
 }
+
 #moove_gdpr_cookie_modal#moove_gdpr_cookie_modal {
     
     .moove-gdpr-modal-content {
@@ -60,7 +61,16 @@ body.gdpr-infobar-visible {
                 // button.mgbutton {
                 //     background-color: $primary;
                 // }
+
+				button.mgbutton.moove-gdpr-modal-save-settings:not(:hover) {
+					background-color: $light;
+					color: $body-color;
+				}
             }
         }
     }
 }
+
+.iframe-replacement {
+	padding: 25% $spacer * 2;
+  }

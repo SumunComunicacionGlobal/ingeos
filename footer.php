@@ -46,7 +46,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 					</p>
 
 					<?php wp_nav_menu( array(
-						'location'		  => 'legal',
+						'theme_location'		  => 'legal',
 						'container_class' => 'collapse navbar-collapse navbar-dark',
 						'container_id'    => 'navbarLegal',
 						'menu_class'      => 'navbar-nav mx-auto mr-md-0 flex-wrap justify-content-center justify-content-md-end',

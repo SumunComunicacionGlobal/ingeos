@@ -100,31 +100,6 @@ function cargar_sidebar( $valor ) {
     return $valor;
 }
 
-add_filter( 'the_content', 'smn_youtube_nocookie', 1000, 1 );
-function smn_youtube_nocookie( $content ) {
-
-	$content = str_replace( 'youtube.com/embed', 'youtube-nocookie.com/embed', $content );
-
-	if ( function_exists( 'gdpr_cookie_is_accepted' ) ) {
-	  /* supported types: 'strict', 'thirdparty', 'advanced' */
-	  if ( !gdpr_cookie_is_accepted( 'thirdparty' ) ) {
-
-	  	$replacement = '<a href="#gdpr_cookie_modal" class="iframe-replacement">'. __( 'Por favor, acepta el uso de cookies de terceros para ver este contenido externo', 'osmoeuropa' ) . '</a>';
-
-	  	$content = preg_replace('~<div([^>]*)(class\\s*=\\s*["\']wpb_video_wrapper["\'])([^>]*)>(.*?)</div>~i', $replacement, $content);
-
-	  	$content = preg_replace('~<div([^>]*)(class\\s*=\\s*["\']wpb_gmaps_widget wpb_content_element["\'])([^>]*)>(.*?)</div>~i', $replacement, $content);
-
-	  	$content = preg_replace( '#<iframe[^>]+>.*?</iframe>#is', $replacement, $content );
-
-	  }
-
-	}
-
-	return $content;
-
-}
-
 
 function smn_nav_menu_submenu_css_class( $classes, $args, $depth ) {
 
