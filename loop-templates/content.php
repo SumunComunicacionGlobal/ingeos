@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<!-- <div class="ek-linked-block"> -->
+	<div class="ek-linked-block">
 
 		<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 
@@ -27,10 +27,9 @@ defined( 'ABSPATH' ) || exit;
 
 			<?php
 			the_title(
-				sprintf( '<h2 class="h5 entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ),
+				sprintf( '<h2 class="h5 entry-title"><a class="stretched-link" href="%s" rel="bookmark">', esc_url( get_permalink() ) ),
 				'</a></h2>'
 			);
-			// the_title( '<h2 class="h5 entry-title">', '</h2>' );
 			?>
 
 		</header><!-- .entry-header -->
@@ -44,9 +43,8 @@ defined( 'ABSPATH' ) || exit;
 
 		</div><!-- .entry-content -->
 
-		<!-- <a href="<?php echo esc_url( get_permalink() ); ?>" class="editorskit-block-link" title="<?php the_title(); ?>"></a> -->
 
-	<!-- </div> -->
+	</div>
 
 	<footer class="entry-footer">
 
