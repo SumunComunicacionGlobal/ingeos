@@ -10,14 +10,14 @@ defined( 'ABSPATH' ) || exit;
 
 add_action( 'loop_start', 'archive_loop_start', 10 );
 function archive_loop_start() {
-    if (is_archive() || is_home() ) {
+    if (is_archive() || is_home() || is_search() ) {
         echo '<div class="row">';
     }
 }
 
 add_action( 'loop_end', 'archive_loop_end', 10 );
 function archive_loop_end() {
-    if (is_archive() || is_home() ) {
+    if (is_archive() || is_home() || is_search() ) {
         echo '</div>';
     }
 }
@@ -40,7 +40,7 @@ function smn_body_classes( $classes ) {
 
 add_filter( 'post_class', 'bootstrap_post_class', 10, 3 );
 function bootstrap_post_class( $classes, $class, $post_id ) {
-    if ( is_archive() || is_home() ) {
+    if ( is_archive() || is_home() || is_search() ) {
         $classes[] = 'col-sm-6 col-lg-4'; 
     }
 
