@@ -23,6 +23,8 @@ if ( is_page() ) {
 			$navbar_class = 'bg-primary navbar-dark';
 		break;
 	}
+} elseif( is_search() || is_404() ) {
+	$navbar_class = 'bg-primary navbar-dark';	
 }
 ?>
 
