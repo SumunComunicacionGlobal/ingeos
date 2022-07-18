@@ -1,6 +1,6 @@
 <?php
 /**
- * Post rendering content according to caller of get_template_part
+ * Search results partial template
  *
  * @package Understrap
  */
@@ -11,35 +11,32 @@ defined( 'ABSPATH' ) || exit;
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-
 	<header class="entry-header">
-
-		<?php if ( 'post' === get_post_type() ) : ?>
-
-			<div class="entry-meta">
-				<?php understrap_posted_on(); ?>
-			</div><!-- .entry-meta -->
-
-		<?php endif; ?>
 
 		<?php
 		the_title(
-			sprintf( '<h2 class="h5 entry-title"><a class="stretched-link" href="%s" rel="bookmark">', esc_url( get_permalink() ) ),
+			sprintf( '<h2 class="entry-title"><a class="stretched-link" href="%s" rel="bookmark">', esc_url( get_permalink() ) ),
 			'</a></h2>'
 		);
 		?>
 
+		<?php if ( 'post' === get_post_type() ) : ?>
+
+			<div class="entry-meta">
+
+				<?php understrap_posted_on(); ?>
+
+			</div><!-- .entry-meta -->
+
+		<?php endif; ?>
+
 	</header><!-- .entry-header -->
 
-	<div class="entry-content">
+	<div class="entry-summary">
 
-		<?php
-		the_excerpt();
-		understrap_link_pages();
-		?>
+		<?php the_excerpt(); ?>
 
-	</div><!-- .entry-content -->
+	</div><!-- .entry-summary -->
 
 	<footer class="entry-footer">
 
