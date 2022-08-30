@@ -10923,11 +10923,20 @@ html {
   bottom: 1rem;
 }
 
-.ek-linked-block {
+#search-wrapper,
+#error-404-wrapper {
+  padding-top: 10rem;
+}
+#search-wrapper .page-header,
+#error-404-wrapper .page-header {
+  margin-bottom: 2rem;
+}
+
+.stretch-linked-block {
   position: relative !important;
   transition: opacity 0.15s linear;
 }
-.ek-linked-block .editorskit-block-link {
+.stretch-linked-block .editorskit-block-link {
   position: absolute;
   top: 0;
   left: 0;
@@ -10935,10 +10944,10 @@ html {
   height: 100%;
   z-index: 90;
 }
-.ek-linked-block:hover {
+.stretch-linked-block:hover {
   opacity: 0.7;
 }
-.ek-linked-block:hover .wp-block-button.is-style-arrow-link .wp-block-button__link:after {
+.stretch-linked-block:hover .wp-block-button.is-style-arrow-link .wp-block-button__link:after {
   right: 0;
 }
 
@@ -10948,6 +10957,11 @@ html {
 .stretched-link:hover {
   text-decoration: none;
   color: #1a1a1a;
+}
+
+.entry-footer {
+  position: relative;
+  z-index: 2;
 }
 
 .has-blue-color,
@@ -11356,6 +11370,19 @@ blockquote,
     font-size: 1.5rem;
   }
 }
+#search-wrapper,
+#error-404-wrapper {
+  padding-top: 10rem;
+}
+#search-wrapper h1.page-title,
+#error-404-wrapper h1.page-title {
+  font-size: 1.75rem;
+}
+#search-wrapper h2,
+#error-404-wrapper h2 {
+  font-size: 1.4rem;
+}
+
 .bg-cover {
   background-size: cover;
   background-position: center center;

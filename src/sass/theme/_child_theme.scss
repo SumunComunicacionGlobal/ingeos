@@ -1,4 +1,13 @@
-.ek-linked-block {
+#search-wrapper,
+#error-404-wrapper {
+    padding-top: 10rem;
+
+    .page-header {
+        margin-bottom: $spacer * 2;
+    }
+}
+
+.stretch-linked-block {
     position: relative !important;
     transition: $transition-fade;
 
@@ -27,4 +36,9 @@
         text-decoration: none;
         color: $body-color;
     }
+}
+
+.entry-footer {
+    position: relative;
+    z-index: 2;
 }
