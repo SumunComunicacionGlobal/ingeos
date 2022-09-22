@@ -45,7 +45,7 @@ jQuery(document).ready(function($) {
 
 /* Carruseles */
 
-// jQuery('.slick-carousel, .wp-block-group.is-style-slick-carousel > .wp-block-group__inner-content, .wp-block-gallery.is-style-slick-carousel').slick({
+// jQuery('.slick-carousel, .wp-block-group.is-style-slick-carousel > .wp-block-group__inner-container, .wp-block-gallery.is-style-slick-carousel').slick({
 //   dots: false,
 //   arrows: true,
 //   infinite: true,

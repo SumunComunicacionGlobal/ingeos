@@ -21,24 +21,35 @@ module.exports = ctx => {
       },
       // Sobrescribe el array de colores completamente. Si el color no está en $colors, no hace nada.
       colors: [
-        "--blue",
+        // "--blue",
         // "--indigo",
-        "--purple",
-        "--pink",
-        "--red",
-        "--orange",
-        "--yellow",
-        "--green",
+        // "--purple",
+        // "--pink",
+        // "--red",
+        // "--orange",
+        // "--yellow",
+        // "--green",
         // "--teal",
-        "--cyan",
+        // "--cyan",
         "--white",
+        "--light",
         "--gray",
         "--gray-dark",
         "--black",
+        "--primary-100",
         "--primary",
+        "--primary-80",
+        "--primary-60",
+        "--primary-40",
+        "--primary-20",
+        "--primary-10",
+        "--secondary-100",
         "--secondary",
-        "--light"
-
+        "--secondary-80",
+        "--secondary-60",
+        "--secondary-40",
+        "--secondary-20",
+        "--secondary-10"
       ]
 
     }

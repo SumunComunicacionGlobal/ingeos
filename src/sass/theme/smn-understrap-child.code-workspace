@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "smn-understrap-child",
+			"path": "../../.."
+		},
+		{
+			"name": "understrap",
+			"path": "../../../../understrap"
+		},
+		{
+			"path": "../../../../_s"
+		}
+	],
+	"settings": {}
+}
