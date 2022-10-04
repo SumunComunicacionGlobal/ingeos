@@ -138,17 +138,6 @@ function remove_is_style_prefix( $block_content, $block ) {
     return $block_content;
 }
 
-add_filter( 'render_block', 'list_block_wrapper', 10, 2 );
-function list_block_wrapper( $block_content, $block ) {
-    if ( $block['blockName'] === 'core/list' ) {
-        $block_content = str_replace( 
-            array( '<ul>', '<ol>'), 
-            array( '<ul class="wp-block-list">', '<ol class="wp-block-list">'), $block_content );
-    }
-
-    return $block_content;
-}
- 
 // add_action('acf/init', 'smn_acf_blocks_init');
 // function smn_acf_blocks_init() {
 
