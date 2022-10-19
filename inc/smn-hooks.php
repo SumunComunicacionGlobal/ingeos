@@ -40,7 +40,7 @@ function smn_body_classes( $classes ) {
 
 add_filter( 'post_class', 'bootstrap_post_class', 10, 3 );
 function bootstrap_post_class( $classes, $class, $post_id ) {
-    if ( is_archive() || is_home() || is_search() ) {
+    if ( is_archive() || is_home() || is_search() || in_array( 'hfeed-post', $class ) ) {
         $classes[] = 'col-sm-6 col-lg-4 stretch-linked-block'; 
     }
 
