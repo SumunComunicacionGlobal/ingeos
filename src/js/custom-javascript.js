@@ -45,6 +45,16 @@ jQuery(document).ready(function($) {
 
 /* Carruseles */
 
+// jQuery('.slick-slider').slick({
+//   dots: true,
+//   arrows: true,
+//   infinite: true,
+//   speed: 300,
+//   slidesToShow: 1,
+//   slidesToScroll: 1,
+//   autoplay: true
+// });
+
 // jQuery('.slick-carousel, .wp-block-group.is-style-slick-carousel > .wp-block-group__inner-container, .wp-block-gallery.is-style-slick-carousel').slick({
 //   dots: false,
 //   arrows: true,

@@ -165,3 +165,13 @@ add_filter('nav_menu_item_args', function ($args, $item, $depth) {
     return $args;
 }, 10, 3);
 
+add_filter( 'parse_tax_query', 'smn_do_not_include_children_in_product_cat_archive' );
+function smn_do_not_include_children_in_product_cat_archive( $query ) {
+    if ( 
+        ! is_admin() 
+        && $query->is_main_query()
+        && $query->is_tax( 'product_cat' )
+    ) {
+        $query->tax_query->queries[0]['include_children'] = 0;
+    }
+}

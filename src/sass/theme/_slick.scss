@@ -47,3 +47,12 @@
 		}
 	}
 }
+
+.slick-slider {
+
+	.wp-block-cover {
+		min-height: 560px;
+		align-items: flex-end;
+		padding: $spacer * 4 0;
+	}
+}

@@ -3,8 +3,57 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-
+// Fuerza la recarga de la página cuando guardas ajustes.
 add_action( 'gdpr_force_reload', '__return_true' );
+
+// Actualiza la capa de datos cuando se guardan ajustes de GDPR Cookie Compliance
+// Configurar el plugin renombrando los tipos de cookies así:
+// Cookies de terceros => Cookies de analítica
+// Cookies adicionales => Cookies de marketing
+add_action( 'wp_enqueue_scripts', 'smn_set_consent_status' );
+function smn_set_consent_status() {
+
+  if ( !function_exists( 'gdpr_cookie_is_accepted' ) ) return false;
+
+  $strict_consent 					= 'denied';
+  $thirdparty_consent 			= 'denied';
+  $advanced_consent 			  = 'denied';
+
+  ob_start(); ?>
+
+    // Define dataLayer and the gtag function.
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // Default ad_storage and analytics_storage to 'denied'.
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+    });
+
+  <?php $default_consent = ob_get_clean();
+
+  wp_register_script( 'gdpr-consent-default', '' );
+  wp_enqueue_script( 'gdpr-consent-default' );
+  wp_add_inline_script( 'gdpr-consent-default', $default_consent );
+
+  if ( gdpr_cookie_is_accepted( 'strict' ) ) :
+    $strict_consent = 'granted';
+  endif;
+
+  if ( gdpr_cookie_is_accepted( 'thirdparty' ) ) :
+    $thirdparty_consent = 'granted';
+  endif;
+
+  if ( gdpr_cookie_is_accepted( 'advanced' ) ) :
+    $advanced_consent = 'granted';
+  endif;
+
+  wp_register_script( 'gdpr-consent-update', '' );
+  wp_enqueue_script( 'gdpr-consent-update' );
+  wp_add_inline_script( 'gdpr-consent-update', "gtag('consent', 'update', {'analytics_storage': '".$thirdparty_consent."'});gtag('consent', 'update', {'ad_storage': '".$advanced_consent."'});gtag('consent', 'update', {'functionality_storage': '".$strict_consent."'});gtag('consent', 'update', {'security_storage': '".$strict_consent."'});gtag('consent', 'update', {'personalization_storage': '".$strict_consent."'});" );
+
+}
 
 add_filter( 'wp_nav_menu_items', 'smn_add_menu_item', 10, 2 );
 function smn_add_menu_item ( $items, $args ) {
@@ -79,3 +128,16 @@ function filtrar_contenido_para_evitar_cookies( $content ) {
 
     return $content;
 }
+
+// Custom Scripts based on front-end language
+add_action('comments_open', function( $comments_open ){
+  if ( function_exists( 'gdpr_cookie_is_accepted' ) ) :
+  // supported types: 'strict', 'thirdparty', 'advanced' 
+  if ( gdpr_cookie_is_accepted( 'thirdparty' ) ) :
+  return $comments_open;
+  else :
+  return false;
+  endif;
+  endif;
+  return $comments_open;
+});

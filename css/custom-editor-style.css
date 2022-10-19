@@ -330,6 +330,18 @@ template {
   --gray: #76787c;
   --gray-dark: #282828;
   --black: #0A0B0B;
+  --primary-100: #4e4738;
+  --primary-80: #ede8d8;
+  --primary-60: #c0a351;
+  --primary-40: #f0e1a7;
+  --primary-20: #f0e8ca;
+  --primary-10: #f5f1e6;
+  --secondary-100: #5e8a59;
+  --secondary-80: #ccd3a9;
+  --secondary-60: #bf8875;
+  --secondary-40: #e3b59c;
+  --secondary-20: #fbdbc7;
+  --secondary-10: #fbdbc7;
   --primary: #625f9d;
   --secondary: #828360;
   --success: #93c01f;
@@ -943,6 +955,126 @@ mark,
   border-color: #0A0B0B;
 }
 
+.has-primary-100-color,
+.has-primary-100-color:visited {
+  color: #4e4738;
+}
+
+.has-primary-100-background-color {
+  background-color: #4e4738;
+  border-color: #4e4738;
+}
+
+.has-primary-80-color,
+.has-primary-80-color:visited {
+  color: #ede8d8;
+}
+
+.has-primary-80-background-color {
+  background-color: #ede8d8;
+  border-color: #ede8d8;
+}
+
+.has-primary-60-color,
+.has-primary-60-color:visited {
+  color: #c0a351;
+}
+
+.has-primary-60-background-color {
+  background-color: #c0a351;
+  border-color: #c0a351;
+}
+
+.has-primary-40-color,
+.has-primary-40-color:visited {
+  color: #f0e1a7;
+}
+
+.has-primary-40-background-color {
+  background-color: #f0e1a7;
+  border-color: #f0e1a7;
+}
+
+.has-primary-20-color,
+.has-primary-20-color:visited {
+  color: #f0e8ca;
+}
+
+.has-primary-20-background-color {
+  background-color: #f0e8ca;
+  border-color: #f0e8ca;
+}
+
+.has-primary-10-color,
+.has-primary-10-color:visited {
+  color: #f5f1e6;
+}
+
+.has-primary-10-background-color {
+  background-color: #f5f1e6;
+  border-color: #f5f1e6;
+}
+
+.has-secondary-100-color,
+.has-secondary-100-color:visited {
+  color: #5e8a59;
+}
+
+.has-secondary-100-background-color {
+  background-color: #5e8a59;
+  border-color: #5e8a59;
+}
+
+.has-secondary-80-color,
+.has-secondary-80-color:visited {
+  color: #ccd3a9;
+}
+
+.has-secondary-80-background-color {
+  background-color: #ccd3a9;
+  border-color: #ccd3a9;
+}
+
+.has-secondary-60-color,
+.has-secondary-60-color:visited {
+  color: #bf8875;
+}
+
+.has-secondary-60-background-color {
+  background-color: #bf8875;
+  border-color: #bf8875;
+}
+
+.has-secondary-40-color,
+.has-secondary-40-color:visited {
+  color: #e3b59c;
+}
+
+.has-secondary-40-background-color {
+  background-color: #e3b59c;
+  border-color: #e3b59c;
+}
+
+.has-secondary-20-color,
+.has-secondary-20-color:visited {
+  color: #fbdbc7;
+}
+
+.has-secondary-20-background-color {
+  background-color: #fbdbc7;
+  border-color: #fbdbc7;
+}
+
+.has-secondary-10-color,
+.has-secondary-10-color:visited {
+  color: #fbdbc7;
+}
+
+.has-secondary-10-background-color {
+  background-color: #fbdbc7;
+  border-color: #fbdbc7;
+}
+
 .has-primary-color,
 .has-primary-color:visited {
   color: #625f9d;
@@ -1163,6 +1295,18 @@ body.understrap-no-sidebar .wp-block-cover.alignwide {
   --gray: #76787c;
   --gray-dark: #282828;
   --black: #0A0B0B;
+  --primary-100: #4e4738;
+  --primary-80: #ede8d8;
+  --primary-60: #c0a351;
+  --primary-40: #f0e1a7;
+  --primary-20: #f0e8ca;
+  --primary-10: #f5f1e6;
+  --secondary-100: #5e8a59;
+  --secondary-80: #ccd3a9;
+  --secondary-60: #bf8875;
+  --secondary-40: #e3b59c;
+  --secondary-20: #fbdbc7;
+  --secondary-10: #fbdbc7;
   --primary: #625f9d;
   --secondary: #828360;
   --success: #93c01f;
@@ -12279,6 +12423,126 @@ html {
   border-color: #0A0B0B;
 }
 
+.has-primary-100-color,
+.has-primary-100-color:visited {
+  color: #4e4738;
+}
+
+.has-primary-100-background-color {
+  background-color: #4e4738;
+  border-color: #4e4738;
+}
+
+.has-primary-80-color,
+.has-primary-80-color:visited {
+  color: #ede8d8;
+}
+
+.has-primary-80-background-color {
+  background-color: #ede8d8;
+  border-color: #ede8d8;
+}
+
+.has-primary-60-color,
+.has-primary-60-color:visited {
+  color: #c0a351;
+}
+
+.has-primary-60-background-color {
+  background-color: #c0a351;
+  border-color: #c0a351;
+}
+
+.has-primary-40-color,
+.has-primary-40-color:visited {
+  color: #f0e1a7;
+}
+
+.has-primary-40-background-color {
+  background-color: #f0e1a7;
+  border-color: #f0e1a7;
+}
+
+.has-primary-20-color,
+.has-primary-20-color:visited {
+  color: #f0e8ca;
+}
+
+.has-primary-20-background-color {
+  background-color: #f0e8ca;
+  border-color: #f0e8ca;
+}
+
+.has-primary-10-color,
+.has-primary-10-color:visited {
+  color: #f5f1e6;
+}
+
+.has-primary-10-background-color {
+  background-color: #f5f1e6;
+  border-color: #f5f1e6;
+}
+
+.has-secondary-100-color,
+.has-secondary-100-color:visited {
+  color: #5e8a59;
+}
+
+.has-secondary-100-background-color {
+  background-color: #5e8a59;
+  border-color: #5e8a59;
+}
+
+.has-secondary-80-color,
+.has-secondary-80-color:visited {
+  color: #ccd3a9;
+}
+
+.has-secondary-80-background-color {
+  background-color: #ccd3a9;
+  border-color: #ccd3a9;
+}
+
+.has-secondary-60-color,
+.has-secondary-60-color:visited {
+  color: #bf8875;
+}
+
+.has-secondary-60-background-color {
+  background-color: #bf8875;
+  border-color: #bf8875;
+}
+
+.has-secondary-40-color,
+.has-secondary-40-color:visited {
+  color: #e3b59c;
+}
+
+.has-secondary-40-background-color {
+  background-color: #e3b59c;
+  border-color: #e3b59c;
+}
+
+.has-secondary-20-color,
+.has-secondary-20-color:visited {
+  color: #fbdbc7;
+}
+
+.has-secondary-20-background-color {
+  background-color: #fbdbc7;
+  border-color: #fbdbc7;
+}
+
+.has-secondary-10-color,
+.has-secondary-10-color:visited {
+  color: #fbdbc7;
+}
+
+.has-secondary-10-background-color {
+  background-color: #fbdbc7;
+  border-color: #fbdbc7;
+}
+
 .has-primary-color,
 .has-primary-color:visited {
   color: #625f9d;
@@ -12613,6 +12877,9 @@ body.understrap-no-sidebar .alignwide {
 .btn, .wpcf7 input[type=submit],
 .wp-block-button__link {
   font-weight: 700;
+}
+
+.wp-block-button__link {
   background-color: #625f9d;
 }
 
@@ -12776,6 +13043,12 @@ table th {
 }
 .input-group-append .btn:focus, .input-group-append .wpcf7 input[type=submit]:focus, .wpcf7 .input-group-append input[type=submit]:focus {
   z-index: 3;
+}
+
+.wpcf7-submit + .wpcf7-spinner {
+  margin-right: 0;
+  margin-left: -30px;
+  top: 6px;
 }
 
 #wrapper-top-bar {

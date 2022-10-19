@@ -22,7 +22,7 @@ if ( $terms ) { ?>
 
 				<?php if ( $page_for_posts_id ) { ?>
 
-					<a class="nav-item nav-link <?php echo $ver_todo_active_class; ?>" href="<?php echo esc_url( get_the_permalink( $page_for_posts_id ) ); ?>"><?php echo __( 'Ver todo', 'smn' ); ?></a>
+					<a class="nav-item nav-link <?php echo $ver_todo_active_class; ?>" href="<?php echo esc_url( get_the_permalink( $page_for_posts_id ) ); ?>"><?php echo __( 'All' ); ?></a>
 
 				<?php } ?>
 
@@ -35,7 +35,7 @@ if ( $terms ) { ?>
 				<?php } ?>
 
 				<a class="nav-item nav-link nav-search-button" data-toggle="collapse" href="#search-form" aria-expanded="false" aria-controls="search-form">
-					<?php echo __( 'Buscar', 'smn' ); ?>
+					<?php echo __( 'Search' ); ?>
 				</a>
 
 			</div>
