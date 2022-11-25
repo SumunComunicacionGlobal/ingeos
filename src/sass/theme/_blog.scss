@@ -1,0 +1,14 @@
+.hfeed-post {
+
+    .wp-post-image {
+        height: 256px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    &.caso-de-exito .wp-post-image {
+        height: 128px;
+        object-fit: contain;
+        object-position: left center;
+    }
+}

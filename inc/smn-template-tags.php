@@ -34,7 +34,7 @@ function understrap_posted_on() {
  */
 function understrap_entry_footer() {
 	// Hide category and tag text for pages.
-	if ( 'post' === get_post_type() ) {
+	if ( is_singular('post') ) {
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( esc_html__( ', ', 'understrap' ) );
 		if ( $categories_list && understrap_categorized_blog() ) {
@@ -62,6 +62,12 @@ function understrap_entry_footer() {
 		'<span class="edit-link">',
 		'</span>'
 	);
+}
+
+function smn_get_breadcrumb() {
+	ob_start();
+	smn_breadcrumb();
+	return ob_get_clean();
 }
 
 function smn_breadcrumb() {

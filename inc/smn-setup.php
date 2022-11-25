@@ -19,7 +19,9 @@ function smn_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'understrap' ),
-		// 'secondary' => __( 'Secondary Menu', 'understrap' ),
+		'secondary' => __( 'Secondary Menu', 'understrap' ),
+		'megamenu' => __( 'Mega Menu', 'understrap' ),
+		'megamenu-buttons' => __( 'Botones Mega Menu', 'understrap' ),
         'legal' => __( 'Páginas legales', 'smn-admin' ),
         // 'account'  => __( 'Páginas de usuario', 'smn-admin' ),
         // 'movil'  => __( 'Menú móvil', 'smn-admin' ),
@@ -30,15 +32,22 @@ function smn_setup() {
 // add_filter( 'wp_trim_excerpt', 'understrap_all_excerpts_get_more_link' );
 function understrap_all_excerpts_get_more_link( $post_excerpt ) {
 	if ( ! is_admin() ) {
-		$post_excerpt = $post_excerpt . ' [...]';
-        // $post_excerpt .= '<p><a class="btn btn-secondary understrap-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __( 'Read More...', 'understrap' ) . '</a></p>';
-        $post_excerpt .= '<div class="wp-block-buttons">';
-            $post_excerpt .= '<div class="wp-block-button is-style-arrow-link">';
-                $post_excerpt .= '<a class="wp-block-button__link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">';
-                    $post_excerpt .= __( 'Read More...', 'understrap' );
-                $post_excerpt .= '</a>';
+        global $post;
+        if ( $post->post_excerpt != $post_excerpt )
+    		$post_excerpt = $post_excerpt . ' [...]';
+    
+        if ( 'publish' == $post->post_status ) {
+            
+            // $post_excerpt .= '<p><a class="btn btn-secondary understrap-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __( 'Read More...', 'understrap' ) . '</a></p>';
+            $post_excerpt .= '<div class="wp-block-buttons">';
+                $post_excerpt .= '<div class="wp-block-button is-style-plus">';
+                    $post_excerpt .= '<a class="wp-block-button__link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">';
+                        $post_excerpt .= __( 'Read More...', 'understrap' );
+                    $post_excerpt .= '</a>';
+                $post_excerpt .= '</div>';
             $post_excerpt .= '</div>';
-        $post_excerpt .= '</div>';
+
+            }
         }
 	return $post_excerpt;
 }

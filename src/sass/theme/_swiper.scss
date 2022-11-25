@@ -1,0 +1,51 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+// .slider-vertical {
+//     height: 540px;
+// }
+
+.swiper-pagination-bullet {
+    border: 1px solid $primary;
+    background-color: transparent;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: $primary;
+}
+
+.swiper-pagination-vertical.swiper-pagination-bullets, 
+.swiper-vertical>.swiper-pagination-bullets {
+    right: unset;
+    left: 10px;
+    top: 35%;
+    
+    .swiper-pagination-bullet {
+        margin: .75rem 0;
+    }
+}
+
+.slider-vertical {
+    padding-left: $spacer * 2;
+    margin-left: -$spacer * 2;
+    width: calc(100% + $spacer*2);
+
+    @include media-breakpoint-up(xl) {
+        padding-left: $spacer * 4;
+        margin-left: -$spacer * 4;
+        width: calc(100% + $spacer*4);
+    }
+
+    figure.wp-block-image,
+    figure.wp-block-image img {
+        margin-bottom: 0;
+    }
+
+    .swiper-slide {
+        min-height: 300px;
+    }
+
+}

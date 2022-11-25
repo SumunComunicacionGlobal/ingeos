@@ -1,3 +1,31 @@
+#desktop-menu{
+
+    .nav-link {
+        @include media-breakpoint-up(xl) {
+            font-size: $font-size-base * 1.125;
+        }
+
+        &:after {
+            content: "";
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: -0.355em;
+            margin-left: $spacer*.1;
+            background-color: $navbar-dark-color;
+            mask-image: url('../img/chevron-right.svg');
+            mask-size: .4rem auto;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            transition: $transition-base;              
+        }
+
+        &:hover:after {
+            transform: translateX(.25rem);
+        }
+    }
+}
+
 #main-menu {
 
     .sub-menu-toggler {
@@ -8,21 +36,46 @@
         width: 2rem;
         height: 2rem;
         margin-left: 1rem;
-        border: 1px solid;
-        border-radius: 40px;
         text-align: center;
 
+        transition: $transition-base;
+        transform: rotate( 90deg );
+        
+
         &:before {
-            content: "+";
-            font-size: 2rem;
-            line-height: 1;
-            font-weight: $font-weight-light;
+            // content: "+";
+            // font-size: 2rem;
+            // line-height: 1;
+            // font-weight: $font-weight-light;
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+ 
+            mask-image: url( '../img/chevron-right.svg' );
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: .5rem;
+            background-color: $white;
         }
     }
 
-    .dropdown.show > a .sub-menu-toggler:before {
-        content: "-";
+    .dropdown.show > a > .sub-menu-toggler {
+        transform: rotate( -90deg );
     }
+
+    > li > a > .sub-menu-toggler {
+        border: 1px solid;
+        border-radius: 40px;
+    }
+
+
+
+    // .dropdown.show > a .sub-menu-toggler:before {
+    //     content: "-";
+    // }
 
     .dropdown-menu .dropdown-toggle:after {
         position: absolute;
@@ -79,4 +132,36 @@
         }
     }
 
+}
+
+#icon-desktop-menu {
+    border: 1px solid $navbar-dark-color;
+    border-width: 0 1px;
+    padding: 0 .5rem;
+}
+
+.icon-nav-link {
+    width: 1.5rem;
+    margin: 0 .5rem;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    text-indent: -999999px;
+    background-color: $white;
+
+    &:hover {
+        background-color: $secondary;
+    }
+}
+
+.navbar-light .icon-nav-link {
+    background-color: $body-color;
+}
+
+.login-nav-link {
+    mask-image: url('../img/icon-user.svg');
+}
+
+.search-nav-link {
+    mask-image: url('../img/icon-search.svg');
 }

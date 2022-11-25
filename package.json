@@ -39,7 +39,9 @@
     "url": "https://github.com/understrap/understrap-child/issues"
   },
   "homepage": "https://understrap.com",
-  "dependencies": {},
+  "dependencies": {
+    "swiper": "^8.4.4"
+  },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",

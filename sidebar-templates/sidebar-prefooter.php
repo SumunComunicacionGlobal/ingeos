@@ -14,16 +14,10 @@ if ( is_singular() ) {
 
 <?php if ( is_active_sidebar( 'prefooter' ) ) : ?>
 
-	<div class="wrapper" id="wrapper-prefooter">
+	<div id="wrapper-prefooter">
 
-		<div class="<?php echo esc_attr( $container ); ?>" id="prefooter-content" tabindex="-1">
-
-			<div class="row">
-
-				<?php dynamic_sidebar( 'prefooter' ); ?>
-
-			</div>
-
+		<div id="prefooter-content" tabindex="-1">
+			<?php dynamic_sidebar( 'prefooter' ); ?>
 		</div>
 
 	</div><!-- #wrapper-prefooter -->

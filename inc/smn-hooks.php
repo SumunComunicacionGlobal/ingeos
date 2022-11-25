@@ -8,15 +8,46 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+add_filter( 'wpcf7_form_tag', 'smn_wpcf7_form_control_class', 10, 2 );
+function smn_wpcf7_form_control_class( $scanned_tag, $replace ) {
+
+   $excluded_types = array(
+        'acceptance',
+        'checkbox',
+        'radio',
+   );
+
+   if ( in_array( $scanned_tag['type'], $excluded_types ) ) return $scanned_tag;
+
+   switch ($scanned_tag['type']) {
+    case 'submit':
+        $scanned_tag['options'][] = 'class:btn';
+        $scanned_tag['options'][] = 'class:btn-primary';
+        break;
+    
+    default:
+        $scanned_tag['options'][] = 'class:form-control';
+        break;
+   }
+   
+   return $scanned_tag;
+}
+
 add_action( 'loop_start', 'archive_loop_start', 10 );
-function archive_loop_start() {
+function archive_loop_start( $query ) {
+
+    if ( isset( $query->query['ignore_row'] ) && $query->query['ignore_row'] ) return false;
+
     if (is_archive() || is_home() || is_search() ) {
         echo '<div class="row">';
     }
 }
 
 add_action( 'loop_end', 'archive_loop_end', 10 );
-function archive_loop_end() {
+function archive_loop_end( $query ) {
+    
+    if ( isset( $query->query['ignore_row'] ) && $query->query['ignore_row'] ) return false;
+
     if (is_archive() || is_home() || is_search() ) {
         echo '</div>';
     }
@@ -40,8 +71,11 @@ function smn_body_classes( $classes ) {
 
 add_filter( 'post_class', 'bootstrap_post_class', 10, 3 );
 function bootstrap_post_class( $classes, $class, $post_id ) {
+
+    if ( 'testimonio' == get_post_type( $post_id) ) return $classes;
+
     if ( is_archive() || is_home() || is_search() || in_array( 'hfeed-post', $class ) ) {
-        $classes[] = 'col-sm-6 col-lg-4 stretch-linked-block'; 
+        $classes[] = 'col-sm-6 mb-3 stretch-linked-block'; 
     }
 
     return $classes;
@@ -65,6 +99,9 @@ function site_info_do_shortcode( $site_info ) {
 
 add_action( 'wp_body_open', 'top_anchor');
 function top_anchor() {
+
+    get_template_part( 'global-templates/modal-menu' );
+
     echo '<div id="top">';
 }
 
@@ -73,12 +110,25 @@ function back_to_top() {
     echo '<a href="#top" class="back-to-top"></a>';
 }
 
+add_action( 'wp_footer', 'smn_side_panel' );
+function smn_side_panel() {
+    if ( is_active_sidebar( 'side-panel' ) ) {
+
+        echo '<div class="side-panel">';
+
+            dynamic_sidebar( 'side-panel' );
+
+        echo '</div>';
+
+    }
+}
+
 function author_page_redirect() {
     if ( is_author() ) {
         wp_redirect( home_url() );
     }
 }
-add_action( 'template_redirect', 'author_page_redirect' );
+// add_action( 'template_redirect', 'author_page_redirect' );
 
 function es_blog() {
 
@@ -103,7 +153,7 @@ function cargar_sidebar( $valor ) {
 
 function smn_nav_menu_submenu_css_class( $classes, $args, $depth ) {
 
-    if ( !$args->walker && 'primary' === $args->theme_location ) {
+    if ( !$args->walker && ( 'primary' === $args->theme_location || 'megamenu' == $args->theme_location ) ) {
         $classes[] = 'dropdown-menu';
         // $classes[] = 'collapse';
     }
@@ -117,7 +167,7 @@ function smn_add_menu_item_classes( $classes, $item, $args ) {
 
     // echo '<pre>'; print_r($args); echo '<pre>';
  
-    if ( !$args->walker && 'primary' === $args->theme_location ) {
+    if ( !$args->walker && ( 'primary' === $args->theme_location || 'megamenu' == $args->theme_location ) ) {
         $classes[] = "nav-item";
 
         if( in_array( 'current-menu-item', $classes ) ) {
@@ -136,7 +186,7 @@ add_filter( 'nav_menu_css_class' , 'smn_add_menu_item_classes' , 10, 4 );
 
 function smn_add_menu_link_classes( $atts, $item, $args ) {
 
-    if ( !$args->walker && 'primary' == $args->theme_location ) {
+    if ( !$args->walker && ( 'primary' == $args->theme_location || 'megamenu' == $args->theme_location ) ) {
 
     // echo '<pre>'; print_r($atts); echo '<pre>';
 
@@ -157,8 +207,16 @@ add_filter( 'nav_menu_link_attributes', 'smn_add_menu_link_classes', 10, 3 );
 
 add_filter('nav_menu_item_args', function ($args, $item, $depth) {
 
-    if ( !$args->walker && 'primary' == $args->theme_location ) {
+    if ( !$args->walker && ( 'primary' == $args->theme_location || 'megamenu' == $args->theme_location ) ) {
         
+        $icon = get_post_meta( $item->ID, 'icon', true );
+
+        if ( $icon ) {
+            $args->link_before = '<span class="menu-item-link-icon">' . wp_get_attachment_image( $icon, 'thumbnail' ) . '</span>';
+        } else {
+            $args->link_before = false;
+        }
+
         $args->link_after  = '<span class="sub-menu-toggler"></span>';
 
     }
@@ -174,4 +232,38 @@ function smn_do_not_include_children_in_product_cat_archive( $query ) {
     ) {
         $query->tax_query->queries[0]['include_children'] = 0;
     }
+}
+
+add_filter('wp_nav_menu_items', 'smn_add_mega_menu_buttons', 10, 2);
+function smn_add_mega_menu_buttons($items, $args){
+
+    if( $args->theme_location == 'megamenu' ) {
+
+        $buttons = wp_nav_menu(
+            array(
+                'theme_location'  => 'megamenu-buttons',
+                'container_class' => 'mt-2',
+                'container_id'    => '',
+                'menu_class'      => 'navbar-nav justify-content-between',
+                'fallback_cb'     => '',
+                'menu_id'         => 'megamenu-buttons-menu',
+                'depth'           => 1,
+                'walker'          => new Understrap_WP_Bootstrap_Navwalker(),
+                'echo'            => false,
+            )
+        );
+
+        if ( is_active_sidebar( 'megamenu-after' ) ) {
+            $buttons .= '<div class="mt-3" id="mega-menu-widgets-after">';
+                ob_start();
+                dynamic_sidebar( 'megamenu-after' );
+                $buttons .= ob_get_clean();
+            $buttons .= '</div>';
+
+        }
+
+        $items .= $buttons;
+    }
+
+    return $items;
 }

@@ -1,10 +1,35 @@
-// Local font example
-// @font-face {
-//     font-family: 'Bw Modelica';
-//     src: url('../fonts/BwModelica-Regular.eot');
-//     src: url('../fonts/BwModelica-Regular.eot?#iefix') format('embedded-opentype'),
-//          url('../fonts/BwModelica-Regular.woff2') format('woff2'),
-//          url('../fonts/BwModelica-Regular.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
+@font-face {
+    font-family: 'At Hauss Aero';
+    src: url('../fonts/AtHaussAero-Regular.woff2') format('woff2'),
+         url('../fonts/AtHaussAero-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'At Hauss Aero';
+    src: url('../fonts/AtHaussAero-RegularItalic.woff2') format('woff2'),
+         url('../fonts/AtHaussAero-RegularItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'At Hauss Aero';
+    src: url('../fonts/AtHaussAero-Light.woff2') format('woff2'),
+         url('../fonts/AtHaussAero-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'At Hauss Aero';
+    src: url('../fonts/AtHaussAero-Bold.woff2') format('woff2'),
+         url('../fonts/AtHaussAero-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}

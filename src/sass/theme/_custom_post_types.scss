@@ -1,0 +1,18 @@
+.wp-block-cover.testimonio {
+
+    > .wp-block-cover__image-background {
+        object-position: 43% 50%;
+
+        @include media-breakpoint-up(sm) {
+            object-position: 30% 50%;
+        }
+    }
+}
+
+.single-caso-de-exito {
+
+    #content {
+        max-width: 800px;
+    }
+
+}

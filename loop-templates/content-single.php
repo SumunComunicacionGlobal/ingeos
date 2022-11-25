@@ -13,7 +13,9 @@ defined( 'ABSPATH' ) || exit;
 
 	<div class="entry-content">
 
-		<?php get_template_part( 'global-templates/image-header' ); ?>
+		<?php get_template_part( 'global-templates/image-header'); ?>
+
+		<?php if ( 'caso-de-exito' == get_post_type() ) the_post_thumbnail( 'large', array( 'class' => 'mb-3' ) ); ?>
 
 		<?php
 		the_content();

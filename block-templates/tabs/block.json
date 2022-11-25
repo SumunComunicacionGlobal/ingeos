@@ -1,0 +1,12 @@
+{
+    "name": "acf/tabs",
+    "title": "Pestañas",
+    "description": "Conjunto de pestañas.",
+    "category": "formatting",
+    "icon": "grid-view",
+    "keywords": ["tabs"],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "tabs.php"
+    }
+}

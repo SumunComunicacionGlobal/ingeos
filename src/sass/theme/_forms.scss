@@ -1,8 +1,9 @@
 .wpcf7 {
     max-width: 100% !important;
-    
+
     label {
         font-size: $font-size-sm;
+        width: 100%;
     }
     
     .wpcf7-response-output {
@@ -47,7 +48,6 @@
       }
 
       input[type=submit] {
-        @extend .btn-dark;
         color: $white;
         transition: $transition-base;
     
@@ -63,7 +63,19 @@
             color: $white;
         }
       }    
-    
+
+
+    // not valid tip for each control
+    .wpcf7-not-valid-tip {
+      color: theme-color("danger");
+    }
+
+    // validation errors ourput bottom of form
+    .wpcf7-validation-errors {
+      color: theme-color("danger");
+      border: 1px solid $gray-200;
+    }
+
 }
 
 .input-group {
@@ -79,6 +91,8 @@
     width: 1%;
     min-width: 0; // https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
     margin-bottom: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 
@@ -92,6 +106,8 @@
   .btn {
     position: relative;
     z-index: 2;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 
     &:focus {
       z-index: 3;
@@ -100,11 +116,13 @@
 }
 
 .wpcf7-submit {
+  padding: $btn-padding-y 3rem;
 
   + .wpcf7-spinner {
     margin-right: 0;
     margin-left: -30px;
-    top: 6px;
+    top: $btn-padding-y*.7;
+    border: 1px solid $white;
   }
 
 }

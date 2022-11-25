@@ -81,8 +81,11 @@ function post_link_sh( $atts ) {
 add_shortcode('post_link', 'post_link_sh');
 
 function paginas_hijas() {
+
 	global $post;
+
 	if ( is_post_type_hierarchical( $post->post_type ) /*&& '' == $post->post_content */) {
+		
 		$args = array(
 			'post_type'			=> array($post->post_type),
 			'posts_per_page'	=> -1,
@@ -90,46 +93,63 @@ function paginas_hijas() {
 			'orderby'			=> 'menu_order',
 			'order'				=> 'ASC',
 			'post_parent'		=> $post->ID,
+			'post_status'		=> 'any',
 		);
+
 		$r = '';
+
 		$query = new WP_Query($args);
+
 		if ($query->have_posts() ) {
-			$r .= '<div class="contenido-adicional mt-5">';
-			// $r .= '<h3>'.__( 'Contenido en', 'smn' ).' "'.$post->post_title.'"</h3>';
-			// $r .= '<ul>';
-			while($query->have_posts() ) {
-				$query->the_post();
-				// $r .= '<li>';
-					$r .= '<a class="btn btn-primary btn-lg mr-2 mb-2 pagina-hija" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title().'" role="button" aria-pressed="false">'.get_the_title().'</a>';
-				$r .= '</li>';
-			}
-			// $r .= '</ul>';
-			// $r .= '</div>';
-		} elseif(0 != $post->post_parent) {
-			wp_reset_postdata();
-			$current_post_id = get_the_ID();
-			$args['post_parent'] = $post->post_parent;
-			$query = new WP_Query($args);
-			if ($query->have_posts() && $query->found_posts > 1 ) {
-				$r .= '<div class="contenido-adicional">';
-				while($query->have_posts() ) {
-					$query->the_post();
-					if ($current_post_id == get_the_ID()) {
-						$r .= '<span class="btn btn-primary btn-sm mr-2 mb-2">'.get_the_title().'</span>';
-					} else {
-						$r .= '<a class="btn btn-outline-primary btn-sm mr-2 mb-2" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title().'" role="button" aria-pressed="false">'.get_the_title().'</a>';
-					}
+
+			$r .= '<div class="row hfeed paginas-hijas">';
+
+				while($query->have_posts() ) { $query->the_post();
+					ob_start();
+					get_template_part( 'loop-templates/content' );
+					$r .= ob_get_clean();
+					
 				}
-				$r .= '</div>';
-			}
-		}
+
+			$r .= '</div>';
+
+		} 
+	// 	elseif( 0 != $post->post_parent ) {
+
+	// 		wp_reset_postdata();
+			
+	// 		$current_post_id = get_the_ID();
+	// 		$args['post_parent'] = $post->post_parent;
+	// 		$query = new WP_Query($args);
+			
+	// 		if ($query->have_posts() && $query->found_posts > 1 ) {
+			
+	// 			$r .= '<div class="contenido-adicional">';
+			
+	// 				while($query->have_posts() ) { $query->the_post();
+
+	// 					if ($current_post_id == get_the_ID()) {
+	// 						$r .= '<span class="btn btn-primary btn-sm mr-2 mb-2">'.get_the_title().'</span>';
+	// 					} else {
+	// 						$r .= '<a class="btn btn-outline-primary btn-sm mr-2 mb-2" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title().'" role="button" aria-pressed="false">'.get_the_title().'</a>';
+	// 					}
+
+	// 				}
+					
+	// 			$r .= '</div>';
+	// 		}
+	// 	}
+
 		wp_reset_postdata();
+
 		return $r;
+
 	}
+
 }
 add_shortcode( 'paginas_hijas', 'paginas_hijas' );
 
-add_filter('the_content', 'mostrar_paginas_hijas', 100);
+// add_filter('the_content', 'mostrar_paginas_hijas', 100);
 function mostrar_paginas_hijas($content) {
 	global $post;
 	if (is_admin() || !is_singular() || !in_the_loop() || is_front_page() ) return $content;
@@ -139,6 +159,93 @@ function mostrar_paginas_hijas($content) {
 	return $content . paginas_hijas();
 
 }
+
+function enlaces_con_iconos( $atts ) {
+
+    extract( shortcode_atts( array(
+        'categoria' => false,
+		'parent'	=> false,
+    ), $atts ) );
+
+	global $post;
+
+	$args = array(
+		'post_type'			=> 'page',
+		'posts_per_page'	=> -1,
+		'orderby'			=> 'menu_order',
+		'order'				=> 'ASC',
+		'post_parent'		=> $post->ID,
+	);
+
+	if ( $parent ) {
+		$args['post_parent'] = $parent;
+		$args['post__not_in'] = array( $post->ID );
+	}
+
+	if ( $categoria ) {
+
+		$categoria = explode( ',', $categoria );
+
+		$args = array(
+			'post_type'			=> 'page',
+			'posts_per_page'	=> -1,
+			'orderby'			=> 'menu_order',
+			'order'				=> 'ASC',
+			'tax_query'			=> array( array(
+									'taxonomy'		=> 'page_cat',
+									'field'			=> 'term_id',
+									'terms'			=> $categoria,
+								)),
+		);
+
+		$args['post__not_in'] = array( $post->ID );
+
+	}
+
+	$r = '';
+
+	$query = new WP_Query($args);
+
+	if ($query->have_posts() ) {
+
+		$r .= '<div class="wp-block-group alignfull enlaces-con-icono">';
+
+			$r .= '<div class="wp-block-group__inner-container">';
+
+				$r .= '<div class="row justify-content-center mt-2">';
+
+					while($query->have_posts() ) { $query->the_post();
+
+						$icono_img = '<img src="'. get_stylesheet_directory_uri().'/img/icon-placeholder.svg" alt="'. get_the_title() . '" />';
+						$icono_id = get_post_meta( get_the_ID(), 'icon', true );
+
+						if ( $icono_id ) {
+							$icono_img = wp_get_attachment_image( $icono_id, 'medium' );
+						}
+								
+						$r .= '<div class="col-6 col-sm-4 col-md text-center position-relative mb-2">';
+
+							$r .= '<div class="icon-wrapper">' . $icono_img . '</div>';
+
+							$r .= '<a class="has-gray-color font-weight-bold stretched-link" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title().'">'.get_the_title().'</a>';
+
+						$r .= '</div>';
+					}
+
+				$r .= '</div>';
+
+			$r .= '</div>';
+
+		$r .= '</div>';
+
+	}
+	
+	wp_reset_postdata();
+
+	return $r;
+
+	}
+add_shortcode( 'enlaces_con_iconos', 'enlaces_con_iconos' );
 
 function get_redes_sociales() {
 
@@ -243,7 +350,7 @@ function testimonios() {
 
 	return $r;
 }
-add_shortcode( 'testimonios', 'testimonios' );
+add_shortcode( 'testimonio_aleatorio', 'testimonios' );
 
 function smn_get_reusable_block( $block_id = '' ) {
     if ( empty( $block_id ) || (int) $block_id !== $block_id ) {
@@ -268,3 +375,36 @@ function smn_reusable_block_shortcode( $atts ) {
     return $content;
 }
 add_shortcode( 'reusable', 'smn_reusable_block_shortcode' );
+
+function smn_slider_pantallas( $atts ) {
+    // extract( shortcode_atts( array(
+    //     'id' => '',
+    // ), $atts ) );
+    // if ( empty( $id ) || (int) $id !== $id ) {
+    //     return;
+    // }
+	
+	ob_start();
+	?>
+
+	<div class="swiper slider-vertical">
+
+		<div class="swiper-wrapper">
+
+			<div class="swiper-slide bg-light p-3">Slide 1</div>
+			<div class="swiper-slide bg-primary p-3">Slide 2</div>
+			<div class="swiper-slide bg-secondary p-3">Slide 3</div>
+
+		</div>
+
+		<div class="swiper-pagination"></div>
+
+	</div>
+
+
+	<?php
+	$content = ob_get_clean();
+	
+    return $content;
+}
+add_shortcode( 'slider_pantallas', 'smn_slider_pantallas' );

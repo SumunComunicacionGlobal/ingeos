@@ -58,3 +58,7 @@ html :where(.wp-block) {
 .is-style-display-3 { @extend .display-3; }
 .is-style-display-4 { @extend .display-4; }
 .is-style-lead { @extend .lead; }
+
+.is-style-faja-intro {
+	transform: none;
+}

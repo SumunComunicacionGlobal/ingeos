@@ -1,4 +1,5 @@
 // Add your custom JS here.
+// import Swiper, { Navigation, Pagination } from 'swiper';
 
 jQuery(document).ready(function($) {
 	var body = $('body');
@@ -40,7 +41,78 @@ jQuery(document).ready(function($) {
     $(this).parent().parent().toggleClass('show');
   });
 
+  $('.abrir-chat, a[href="#abrir-chat"]').click(function(e) {
+    e.preventDefault();
+    $('#lbContactHeaderFloat').trigger('click');
+    $('#lbContactTrigger').trigger('click');
+  });
+
+  $('[href*=home-animation-slide').click(function(e) {
+    e.preventDefault();
+    var destinationSelector = $(this).attr('href').replace('#', '');
+    var destinationClassSelector = '.' + destinationSelector;
+    // if ( destinationClassSelector != '.' + destinationSelector ) {
+      // $('[class*=home-animation-slide]').hide( 0, function() {
+        $( '[class*=home-animation-slide]' ).fadeOut( 0 );
+        $( destinationClassSelector ).fadeIn( 300 );
+      // });
+    // }
+  });
+
 });
+
+function setSlideHeight(that){
+  jQuery('.swiper-slide').css({height:'auto'});
+      var currentSlide = that.activeIndex;
+      var newHeight = jQuery(that.slides[currentSlide]).height();
+
+      jQuery('.swiper-wrapper,.swiper-slide').css({ height : newHeight })
+      that.update();
+}
+
+
+
+var swiper = new Swiper( '.slider-vertical', {
+  direction: 'vertical',
+  // mousewheel: true,
+  mousewheel: {
+    forceToAxis: true,
+    sensitivity: 1,
+    releaseOnEdges: true,
+  },
+
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+
+  on:{
+    init:function() {
+      setSlideHeight(this);
+    },
+    slideChangeTransitionEnd:function() {
+      setSlideHeight(this);
+    }
+  }
+
+} );
+
+var swiper = new Swiper( '.carousel', {
+  loop: false,
+
+  pagination: {
+    el: '.swiper-pagination',
+  },
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  // scrollbar: {
+  //   el: '.swiper-scrollbar',
+  // }
+} );
 
 
 /* Carruseles */

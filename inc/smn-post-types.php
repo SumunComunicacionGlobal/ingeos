@@ -9,6 +9,52 @@ add_post_type_support( 'page', 'excerpt' );
     // register_taxonomy_for_object_type('category', 'page');  
 // }
 
+add_action('init', function(){
+    register_taxonomy('post_tag', []);
+});
+
+if ( ! function_exists( 'page_cat_function' ) ) {
+
+	// Register Custom Taxonomy
+	function page_cat_function() {
+
+		$labels = array(
+			'name'                       => _x( 'Categorías de páginas', 'Taxonomy General Name', 'smn-admin' ),
+			'singular_name'              => _x( 'Categoría de página', 'Taxonomy Singular Name', 'smn-admin' ),
+			'menu_name'                  => __( 'Categorías de páginas', 'smn-admin' ),
+			'all_items'                  => __( 'Todas las Categorías de páginas', 'smn-admin' ),
+			'parent_item'                => __( 'Categoría de página superior', 'smn-admin' ),
+			'parent_item_colon'          => __( 'Categoría de página superior:', 'smn-admin' ),
+			'new_item_name'              => __( 'Nueva Categoría de página', 'smn-admin' ),
+			'add_new_item'               => __( 'Añadir Nueva Categoría de página', 'smn-admin' ),
+			'edit_item'                  => __( 'Editar Categoría de página', 'smn-admin' ),
+			'update_item'                => __( 'Actualizar Categoría de página', 'smn-admin' ),
+			'view_item'                  => __( 'Ver Categoría de página', 'smn-admin' ),
+			'separate_items_with_commas' => __( 'Separar Categoría de página con comas', 'smn-admin' ),
+			'add_or_remove_items'        => __( 'Añadir o eliminar Categoría de página', 'smn-admin' ),
+			'choose_from_most_used'      => __( 'Elegir de entre las más usadas', 'smn-admin' ),
+			'popular_items'              => __( 'Categorías de páginas populares', 'smn-admin' ),
+			'search_items'               => __( 'Buscar Categorías de páginas', 'smn-admin' ),
+			'not_found'                  => __( 'No encontrada', 'smn-admin' ),
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => true,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => false,
+			'show_tagcloud'              => false,
+			'show_in_rest'				 => true,
+		);
+
+		register_taxonomy( 'page_cat', array( 'page' ), $args );
+
+	}
+	// Hook into the 'init' action
+	add_action( 'init', 'page_cat_function', 0 );
+
+}
 
 if ( ! function_exists('custom_post_type_slide') ) {
 
@@ -99,7 +145,7 @@ function custom_post_type_team() {
 	register_post_type( 'team', $args );
 
 }
-add_action( 'init', 'custom_post_type_team', 0 );
+// add_action( 'init', 'custom_post_type_team', 0 );
 
 }
 
@@ -147,7 +193,7 @@ function custom_post_type_producto() {
 	register_post_type( 'product', $args );
 
 }
-add_action( 'init', 'custom_post_type_producto', 0 );
+// add_action( 'init', 'custom_post_type_producto', 0 );
 
 }
 
@@ -191,6 +237,10 @@ function custom_post_type_caso_de_exito() {
 		'capability_type'       => 'post',
 		'taxonomies'			=> array(''),
 		'show_in_rest'			=> true,
+		'rewrite'				=> array(
+										'slug'			=> __('casos-exito', 'smn' ),
+										'with_front'	=> false,
+									),
 	);
 	register_post_type( 'caso-de-exito', $args );
 
@@ -199,30 +249,78 @@ add_action( 'init', 'custom_post_type_caso_de_exito', 0 );
 
 }
 
+if ( ! function_exists('custom_post_type_testimonio') ) {
+
+	// Register Custom Post Type
+	function custom_post_type_testimonio() {
+	
+		$labels = array(
+			'name'                  => _x( 'Testimonios', 'Post Type General Name', 'smn' ),
+			'singular_name'         => _x( 'Testimonio', 'Post Type Singular Name', 'smn' ),
+			'menu_name'             => __( 'Testimonios', 'smn-admin' ),
+			'name_admin_bar'        => __( 'Testimonio', 'smn-admin' ),
+			'add_new'               => __( 'Añadir nuevo Testimonio', 'smn-admin' ),
+			'new_item'              => __( 'Nuevo Testimonio', 'smn-admin' ),
+			'edit_item'             => __( 'Editar Testimonio', 'smn-admin' ),
+			'update_item'           => __( 'Actualizar Testimonio', 'smn-admin' ),
+			'view_item'             => __( 'Ver Testimonio', 'smn-admin' ),
+			'view_items'            => __( 'Ver Testimonios', 'smn-admin' ),
+			'featured_image'		=> __( 'Foto de perfil', 'smn-admin' ),
+			'set_featured_image'	=> __( 'Establecer Foto de perfil', 'smn-admin' ),
+			'remove_featured_image'	=> __( 'Quitar Foto de perfil', 'smn-admin' ),
+			'use_featured_image'	=> __( 'Usar como Foto de perfil', 'smn-admin' ),
+		);
+		$args = array(
+			'label'                 => __( 'Testimonios', 'smn' ),
+			'labels'                => $labels,
+			'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
+			'hierarchical'          => false,
+			'public'                => true,
+			'show_ui'               => true,
+			'show_in_menu'          => true,
+			'menu_position'         => 23,
+			'menu_icon'             => 'dashicons-format-quote',
+			'show_in_admin_bar'     => false,
+			'show_in_nav_menus'     => false,
+			'can_export'            => true,
+			'has_archive'           => false,
+			'exclude_from_search'   => true,
+			'publicly_queryable'    => true,
+			'capability_type'       => 'post',
+			'taxonomies'			=> array(''),
+			'show_in_rest'			=> false,
+		);
+		register_post_type( 'testimonio', $args );
+	
+	}
+	add_action( 'init', 'custom_post_type_testimonio', 0 );
+	
+}
+
 if ( ! function_exists('cpt_content_fragment_function') ) {
 
 	// Register Custom Post Type
 	function cpt_content_fragment_function() {
 
 		$labels = array(
-			'name'                => _x( 'Fragmentos', 'Post Type General Name', 'kemon' ),
-			'singular_name'       => _x( 'Fragmento', 'Post Type Singular Name', 'kemon' ),
-			'menu_name'           => __( 'Fragmentos de contenido reutilizables', 'kemon' ),
-			'name_admin_bar'      => __( 'Fragmento', 'kemon' ),
-			'parent_item_colon'   => __( 'Fragmento superior:', 'kemon' ),
-			'all_items'           => __( 'Todos los Fragmentos de contenido', 'kemon' ),
-			'add_new_item'        => __( 'Añadir nuevo Fragmento', 'kemon' ),
-			'add_new'             => __( 'Añadir nuevo', 'kemon' ),
-			'new_item'            => __( 'Nuevo Fragmento', 'kemon' ),
-			'edit_item'           => __( 'Editar Fragmento', 'kemon' ),
-			'update_item'         => __( 'Actualizar Fragmento', 'kemon' ),
-			'view_item'           => __( 'Ver Fragmento', 'kemon' ),
-			'search_items'        => __( 'Buscar Fragmento', 'kemon' ),
-			'not_found'           => __( 'No se han encontrado Fragmentos', 'kemon' ),
-			'not_found_in_trash'  => __( 'No se han encontrado Fragmentos en la papelera', 'kemon' ),
+			'name'                => _x( 'Fragmentos', 'Post Type General Name', 'smn-admin' ),
+			'singular_name'       => _x( 'Fragmento', 'Post Type Singular Name', 'smn-admin' ),
+			'menu_name'           => __( 'Fragmentos de contenido reutilizables', 'smn-admin' ),
+			'name_admin_bar'      => __( 'Fragmento', 'smn-admin' ),
+			'parent_item_colon'   => __( 'Fragmento superior:', 'smn-admin' ),
+			'all_items'           => __( 'Todos los Fragmentos de contenido', 'smn-admin' ),
+			'add_new_item'        => __( 'Añadir nuevo Fragmento', 'smn-admin' ),
+			'add_new'             => __( 'Añadir nuevo', 'smn-admin' ),
+			'new_item'            => __( 'Nuevo Fragmento', 'smn-admin' ),
+			'edit_item'           => __( 'Editar Fragmento', 'smn-admin' ),
+			'update_item'         => __( 'Actualizar Fragmento', 'smn-admin' ),
+			'view_item'           => __( 'Ver Fragmento', 'smn-admin' ),
+			'search_items'        => __( 'Buscar Fragmento', 'smn-admin' ),
+			'not_found'           => __( 'No se han encontrado Fragmentos', 'smn-admin' ),
+			'not_found_in_trash'  => __( 'No se han encontrado Fragmentos en la papelera', 'smn-admin' ),
 		);
 		$args = array(
-			'label'               => __( 'Fragmentos de contenido', 'kemon' ),
+			'label'               => __( 'Fragmentos de contenido', 'smn-admin' ),
 			'labels'              => $labels,
 			'supports'            => array( 'title', 'editor', 'author' ),
 			'hierarchical'        => false,
@@ -256,23 +354,23 @@ if ( ! function_exists( 'product_cat_function' ) ) {
 	function product_cat_function() {
 
 		$labels = array(
-			'name'                       => _x( 'Familias de Producto', 'Taxonomy General Name', 'kemon' ),
-			'singular_name'              => _x( 'Familia de Producto', 'Taxonomy Singular Name', 'kemon' ),
-			'menu_name'                  => __( 'Familias de Producto', 'kemon' ),
-			'all_items'                  => __( 'Todas las Familias de Producto', 'kemon' ),
-			'parent_item'                => __( 'Familia de Producto superior', 'kemon' ),
-			'parent_item_colon'          => __( 'Familia de Producto superior:', 'kemon' ),
-			'new_item_name'              => __( 'Nueva Familia de Producto', 'kemon' ),
-			'add_new_item'               => __( 'Añadir Nueva Familia de Producto', 'kemon' ),
-			'edit_item'                  => __( 'Editar Familia de Producto', 'kemon' ),
-			'update_item'                => __( 'Actualizar Familia de Producto', 'kemon' ),
-			'view_item'                  => __( 'Ver Familia de Producto', 'kemon' ),
-			'separate_items_with_commas' => __( 'Separar Familia de Producto con comas', 'kemon' ),
-			'add_or_remove_items'        => __( 'Añadir o eliminar Familia de Producto', 'kemon' ),
-			'choose_from_most_used'      => __( 'Elegir de entre las más usadas', 'kemon' ),
-			'popular_items'              => __( 'Familias de Producto populares', 'kemon' ),
-			'search_items'               => __( 'Buscar Familias de Producto', 'kemon' ),
-			'not_found'                  => __( 'No encontrada', 'kemon' ),
+			'name'                       => _x( 'Familias de Producto', 'Taxonomy General Name', 'smn' ),
+			'singular_name'              => _x( 'Familia de Producto', 'Taxonomy Singular Name', 'smn' ),
+			'menu_name'                  => __( 'Familias de Producto', 'smn-admin' ),
+			'all_items'                  => __( 'Todas las Familias de Producto', 'smn-admin' ),
+			'parent_item'                => __( 'Familia de Producto superior', 'smn-admin' ),
+			'parent_item_colon'          => __( 'Familia de Producto superior:', 'smn-admin' ),
+			'new_item_name'              => __( 'Nueva Familia de Producto', 'smn-admin' ),
+			'add_new_item'               => __( 'Añadir Nueva Familia de Producto', 'smn-admin' ),
+			'edit_item'                  => __( 'Editar Familia de Producto', 'smn-admin' ),
+			'update_item'                => __( 'Actualizar Familia de Producto', 'smn-admin' ),
+			'view_item'                  => __( 'Ver Familia de Producto', 'smn-admin' ),
+			'separate_items_with_commas' => __( 'Separar Familia de Producto con comas', 'smn-admin' ),
+			'add_or_remove_items'        => __( 'Añadir o eliminar Familia de Producto', 'smn-admin' ),
+			'choose_from_most_used'      => __( 'Elegir de entre las más usadas', 'smn-admin' ),
+			'popular_items'              => __( 'Familias de Producto populares', 'smn-admin' ),
+			'search_items'               => __( 'Buscar Familias de Producto', 'smn-admin' ),
+			'not_found'                  => __( 'No encontrada', 'smn-admin' ),
 		);
 		$args = array(
 			'labels'                     => $labels,
@@ -284,7 +382,7 @@ if ( ! function_exists( 'product_cat_function' ) ) {
 			'show_tagcloud'              => true,
 			'show_in_rest'				 => true,
 			'rewrite'					 => array(
-											'slug'			=> __( 'product-cat', 'kemon' ),
+											'slug'			=> __( 'product-cat', 'smn' ),
 											'with_front'	=> true,
 											'hierarchical'	=> false,
 										 ),
@@ -294,7 +392,7 @@ if ( ! function_exists( 'product_cat_function' ) ) {
 
 	}
 	// Hook into the 'init' action
-	add_action( 'init', 'product_cat_function', 0 );
+	// add_action( 'init', 'product_cat_function', 0 );
 
 }
 
@@ -304,23 +402,23 @@ if ( ! function_exists( 'product_tag_function' ) ) {
 	function product_tag_function() {
 
 		$labels = array(
-			'name'                       => _x( 'Etiquetas de Producto', 'Taxonomy General Name', 'kemon' ),
-			'singular_name'              => _x( 'Etiqueta de Producto', 'Taxonomy Singular Name', 'kemon' ),
-			'menu_name'                  => __( 'Etiquetas de Producto', 'kemon' ),
-			'all_items'                  => __( 'Todas las Etiquetas de Producto', 'kemon' ),
-			'parent_item'                => __( 'Etiqueta de Producto superior', 'kemon' ),
-			'parent_item_colon'          => __( 'Etiqueta de Producto superior:', 'kemon' ),
-			'new_item_name'              => __( 'Nueva Etiqueta de Producto', 'kemon' ),
-			'add_new_item'               => __( 'Añadir Nueva Etiqueta de Producto', 'kemon' ),
-			'edit_item'                  => __( 'Editar Etiqueta de Producto', 'kemon' ),
-			'update_item'                => __( 'Actualizar Etiqueta de Producto', 'kemon' ),
-			'view_item'                  => __( 'Ver Etiqueta de Producto', 'kemon' ),
-			'separate_items_with_commas' => __( 'Separar Etiqueta de Producto con comas', 'kemon' ),
-			'add_or_remove_items'        => __( 'Añadir o eliminar Etiqueta de Producto', 'kemon' ),
-			'choose_from_most_used'      => __( 'Elegir de entre las más usadas', 'kemon' ),
-			'popular_items'              => __( 'Etiquetas de Producto populares', 'kemon' ),
-			'search_items'               => __( 'Buscar Etiquetas de Producto', 'kemon' ),
-			'not_found'                  => __( 'No encontrada', 'kemon' ),
+			'name'                       => _x( 'Etiquetas de Producto', 'Taxonomy General Name', 'smn-admin' ),
+			'singular_name'              => _x( 'Etiqueta de Producto', 'Taxonomy Singular Name', 'smn-admin' ),
+			'menu_name'                  => __( 'Etiquetas de Producto', 'smn-admin' ),
+			'all_items'                  => __( 'Todas las Etiquetas de Producto', 'smn-admin' ),
+			'parent_item'                => __( 'Etiqueta de Producto superior', 'smn-admin' ),
+			'parent_item_colon'          => __( 'Etiqueta de Producto superior:', 'smn-admin' ),
+			'new_item_name'              => __( 'Nueva Etiqueta de Producto', 'smn-admin' ),
+			'add_new_item'               => __( 'Añadir Nueva Etiqueta de Producto', 'smn-admin' ),
+			'edit_item'                  => __( 'Editar Etiqueta de Producto', 'smn-admin' ),
+			'update_item'                => __( 'Actualizar Etiqueta de Producto', 'smn-admin' ),
+			'view_item'                  => __( 'Ver Etiqueta de Producto', 'smn-admin' ),
+			'separate_items_with_commas' => __( 'Separar Etiqueta de Producto con comas', 'smn-admin' ),
+			'add_or_remove_items'        => __( 'Añadir o eliminar Etiqueta de Producto', 'smn-admin' ),
+			'choose_from_most_used'      => __( 'Elegir de entre las más usadas', 'smn-admin' ),
+			'popular_items'              => __( 'Etiquetas de Producto populares', 'smn-admin' ),
+			'search_items'               => __( 'Buscar Etiquetas de Producto', 'smn-admin' ),
+			'not_found'                  => __( 'No encontrada', 'smn-admin' ),
 		);
 		$args = array(
 			'labels'                     => $labels,
@@ -332,7 +430,7 @@ if ( ! function_exists( 'product_tag_function' ) ) {
 			'show_tagcloud'              => true,
 			'show_in_rest'				 => true,
 			'rewrite'					 => array(
-											'slug'			=> __( 'product-tag', 'kemon' ),
+											'slug'			=> __( 'product-tag', 'smn' ),
 											'with_front'	=> true,
 											'hierarchical'	=> false,
 										 ),
@@ -342,7 +440,7 @@ if ( ! function_exists( 'product_tag_function' ) ) {
 
 	}
 	// Hook into the 'init' action
-	add_action( 'init', 'product_tag_function', 0 );
+	// add_action( 'init', 'product_tag_function', 0 );
 
 }
 
@@ -382,8 +480,14 @@ function custom_taxonomy_sector() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 		'show_in_rest'               => true,
+		'rewrite'					 => array(
+											'slug'			=> __( 'sectores', 'smn' ),
+											'with_front'	=> false,
+											'hierarchical'	=> false,
+										),
+
 	);
-	register_taxonomy( 'sector', array( 'product' ), $args );
+	register_taxonomy( 'sector', array( 'product', 'caso-de-exito' ), $args );
 
 }
 add_action( 'init', 'custom_taxonomy_sector', 10 );

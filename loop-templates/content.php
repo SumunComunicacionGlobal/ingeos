@@ -15,19 +15,15 @@ defined( 'ABSPATH' ) || exit;
 
 	<header class="entry-header">
 
-		<?php if ( 'post' === get_post_type() ) : ?>
-
-			<div class="entry-meta">
-				<?php understrap_posted_on(); ?>
-			</div><!-- .entry-meta -->
-
-		<?php endif; ?>
-
 		<?php
-		the_title(
-			sprintf( '<h2 class="h5 entry-title"><a class="stretched-link" href="%s" rel="bookmark">', esc_url( get_permalink() ) ),
-			'</a></h2>'
-		);
+		if ( 'publish' == $post->post_status ) {
+			the_title(
+				sprintf( '<h3 class="h4 entry-title"><a class="stretched-link" href="%s" rel="bookmark">', esc_url( get_permalink() ) ),
+				'</a></h3>'
+			);
+		} else {
+			the_title( '<h3 class="h4 entry-title">', '</h3>' );
+		}
 		?>
 
 	</header><!-- .entry-header -->
