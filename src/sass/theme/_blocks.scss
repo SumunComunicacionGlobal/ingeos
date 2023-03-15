@@ -429,6 +429,10 @@ ul.wp-block-list {
         margin-bottom: $spacer * 4 !important;
     }
 
+    &.single-oferta-empleo .is-style-image-header {
+        min-height: 300px;
+    }
+
 }
 
 .is-style-image-header {

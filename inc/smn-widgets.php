@@ -83,6 +83,17 @@ function understrap_widgets_init() {
 		)
 	);
 
+	register_sidebar(
+		array(
+			'name'          => __( 'Formulario ofertas de empleo', 'understrap' ),
+			'id'            => 'job-form',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</aside>',
+			'before_title'  => '<p class="widget-title">',
+			'after_title'   => '</p>',
+		)
+	);
+
 	// register_sidebar(
 	// 	array(
 	// 		'name'          => __( 'Left Sidebar', 'understrap' ),

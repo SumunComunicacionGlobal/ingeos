@@ -15,7 +15,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 <?php get_template_part( 'global-templates/related-posts' ); ?>
 
-<?php get_template_part( 'global-templates/carousel-testimonios' ); ?>
+<?php if ( 'oferta-empleo' != get_post_type() ) get_template_part( 'global-templates/carousel-testimonios' ); ?>
 
 <?php get_template_part( 'sidebar-templates/sidebar', 'prefooter' ); ?>
 

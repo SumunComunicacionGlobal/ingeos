@@ -13,6 +13,10 @@
     }
 }
 
+.sticky-top {
+    top: 100px;
+}
+
 #search-wrapper,
 #error-404-wrapper {
     padding-top: 10rem;
@@ -64,14 +68,6 @@
 .entry-footer {
     position: relative;
     z-index: 2;
-}
-
-#lbContactTrigger {
-    opacity: 0;
-    z-index: -1;
-}
-#lbContact {
-    right: 100px !important;
 }
 
 [class*=home-animation-slide]:not(.home-animation-slide-0) {

@@ -62,3 +62,7 @@ html :where(.wp-block) {
 .is-style-faja-intro {
 	transform: none;
 }
+
+[class*=home-animation-slide]:not(.home-animation-slide-0) {
+    display: block;
+}

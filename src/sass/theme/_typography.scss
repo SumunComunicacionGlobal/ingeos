@@ -124,6 +124,14 @@ blockquote,
     }
 }
 
+.post-type-label {
+    font-size: $font-size-base;
+    text-transform: uppercase;
+    display: block;
+    font-weight: $font-weight-base;
+    margin: .5rem 0;
+}
+
 @include media-breakpoint-up(lg) {
 
     .display-1 {

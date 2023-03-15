@@ -9228,7 +9228,7 @@ html {
 
 .back-to-top {
   position: fixed;
-  right: 1rem;
+  left: 1rem;
   bottom: -60px;
   width: 60px;
   height: 60px;
@@ -9289,6 +9289,10 @@ html {
   }
 }
 
+.sticky-top {
+  top: 100px;
+}
+
 #search-wrapper,
 #error-404-wrapper {
   padding-top: 10rem;
@@ -9336,15 +9340,6 @@ html {
 .entry-footer {
   position: relative;
   z-index: 2;
-}
-
-#lbContactTrigger {
-  opacity: 0;
-  z-index: -1;
-}
-
-#lbContact {
-  right: 100px !important;
 }
 
 [class*=home-animation-slide]:not(.home-animation-slide-0) {
@@ -9901,6 +9896,14 @@ blockquote,
   margin: 1rem auto;
 }
 
+.post-type-label {
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 400;
+  margin: 0.5rem 0;
+}
+
 @media (min-width: 992px) {
   .display-1, .is-style-display-1, .is-style-cifra-circulo {
     font-size: 4rem;
@@ -10330,6 +10333,10 @@ ul.wp-block-list > li:before {
 .single .is-style-image-header {
   min-height: 560px;
   margin-bottom: 4rem !important;
+}
+.archive.single-oferta-empleo .is-style-image-header,
+.single.single-oferta-empleo .is-style-image-header {
+  min-height: 300px;
 }
 
 .is-style-image-header {
@@ -11172,6 +11179,7 @@ body.scrolled #main-nav {
 }
 
 .side-panel {
+  display: none;
   position: fixed;
   left: 1rem;
   bottom: 1rem;
@@ -11179,6 +11187,7 @@ body.scrolled #main-nav {
 }
 @media (min-width: 782px) {
   .side-panel {
+    display: flex;
     top: 240px;
     right: 0;
     bottom: unset;
@@ -11501,6 +11510,10 @@ html :where(.wp-block)[data-align=wide] {
 
 .is-style-faja-intro {
   transform: none;
+}
+
+[class*=home-animation-slide]:not(.home-animation-slide-0) {
+  display: block;
 }
 
 /*# sourceMappingURL=custom-editor-style.css.map */

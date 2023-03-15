@@ -158,22 +158,22 @@ if ( function_exists( 'register_block_style' ) ) {
         )
     );
 
-    $carousel_block_types = array(
-        'core/group',
-        'core/gallery',
-    );
+    // $carousel_block_types = array(
+    //     'core/group',
+    //     'core/gallery',
+    // );
 
-    foreach( $carousel_block_types as $block_type ) {
+    // foreach( $carousel_block_types as $block_type ) {
 
-        register_block_style(
-            $block_type,
-            array(
-                'name'         => 'slick-carousel',
-                'label'        => sprintf( __( 'Carrusel', 'smn-admin' ), $i ),
-                'is_default'   => false,
-            )
-        );
-    }
+    //     register_block_style(
+    //         $block_type,
+    //         array(
+    //             'name'         => 'slick-carousel',
+    //             'label'        => sprintf( __( 'Carrusel', 'smn-admin' ), $i ),
+    //             'is_default'   => false,
+    //         )
+    //     );
+    // }
        
 
 }

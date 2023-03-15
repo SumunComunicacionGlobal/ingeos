@@ -8,9 +8,9 @@ $title = '';
 $description = '';
 
 if ( is_singular() ) {
-	if ( 'caso-de-exito' != $post->post_type ) $image_id = get_post_thumbnail_id( get_the_ID() );
+	// if ( 'caso-de-exito' != $post->post_type ) $image_id = get_post_thumbnail_id( get_the_ID() );
 	$title = get_the_title();
-	if ( $post->post_excerpt ) {
+	if ( 'oferta-empleo' != $post->post_type && $post->post_excerpt ) {
 		$description = $post->post_excerpt;
 	}
 } elseif ( is_archive() ) {
@@ -50,7 +50,10 @@ if ( is_singular() ) {
 			
 			<?php } ?>
 
-			<?php if ( is_active_sidebar( 'image-header' ) ) { ?>
+			<?php if ( 
+				!in_array( $post->post_type, array( 'post', 'oferta-empleo' ) ) &&
+				is_active_sidebar( 'image-header' ) 
+			) { ?>
 
 				<div class="py-2">
 			

@@ -59,6 +59,19 @@ jQuery(document).ready(function($) {
     // }
   });
 
+  $('a[href^="#v-pills-"]').on('click', function (e) {
+    e.preventDefault();
+    var hash = $(this).attr('href');
+    // alert(hash);
+    $( '.tab-pane' ).removeClass('active show');
+    $( '[data-toggle="pill"]' ).removeClass( 'active' );
+    $( '[data-target="' + hash + '"]' ).addClass( 'active' );    
+    $( hash ).tab('show');
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $( hash ).offset().top - 120
+    }, 300);
+  })
+
 });
 
 function setSlideHeight(that){

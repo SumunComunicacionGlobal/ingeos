@@ -30,6 +30,12 @@ $post_type = get_post_type();
 
 				<?php get_template_part( 'global-templates/image-header' ); ?>
 
+				<?php if ( is_post_type_archive( 'oferta-empleo' ) ) { ?>
+
+					<h2><?php echo get_post_type_object( 'oferta-empleo' )->labels->menu_name; ?></h2>
+
+				<?php } ?>
+
 				<?php if ( is_tax() ) {
 					echo get_term_meta( get_queried_object_id(), 'secondary_description', true );
 					get_template_part( 'global-templates/content-fragments', '', array('post_ids' => get_term_meta( get_queried_object_id(), 'top_fragments', true ) ) );

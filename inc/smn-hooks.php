@@ -75,7 +75,17 @@ function bootstrap_post_class( $classes, $class, $post_id ) {
     if ( 'testimonio' == get_post_type( $post_id) ) return $classes;
 
     if ( is_archive() || is_home() || is_search() || in_array( 'hfeed-post', $class ) ) {
-        $classes[] = 'col-sm-6 mb-3 stretch-linked-block'; 
+        
+        if ( 'oferta-empleo' == get_post_type( $post_id) ) {
+        
+            $classes[] = 'col-12 stretch-linked-block';
+            return $classes;
+        
+        } else {
+
+            $classes[] = 'col-sm-6 mb-3 stretch-linked-block'; 
+
+        }
     }
 
     return $classes;
@@ -266,4 +276,16 @@ function smn_add_mega_menu_buttons($items, $args){
     }
 
     return $items;
+}
+
+add_filter( 'the_title', 'smn_oferta_de_empleo_title', 10, 2 );
+function smn_oferta_de_empleo_title( $title, $post_id ) {
+
+    $post_type = get_post_type( $post_id );
+	if ( 'oferta-empleo' == $post_type ) {
+		$pto = get_post_type_object( $post_type );
+		$title = '<span class="post-type-label">' . $pto->labels->singular_name . ': </span>' . $title;
+	}
+
+    return $title;
 }

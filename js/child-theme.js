@@ -1,6 +1,6 @@
 /*!
   * Understrap v1.0.1 (https://understrap.com)
-  * Copyright 2013-2022 The Understrap Authors (https://github.com/understrap/understrap/graphs/contributors)
+  * Copyright 2013-2023 The Understrap Authors (https://github.com/understrap/understrap/graphs/contributors)
   * Licensed under GPL (http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
   */
 (function (global, factory) {
@@ -1758,6 +1758,18 @@
       $('[class*=home-animation-slide]').fadeOut(0);
       $(destinationClassSelector).fadeIn(300); // });
       // }
+    });
+    $('a[href^="#v-pills-"]').on('click', function (e) {
+      e.preventDefault();
+      var hash = $(this).attr('href'); // alert(hash);
+
+      $('.tab-pane').removeClass('active show');
+      $('[data-toggle="pill"]').removeClass('active');
+      $('[data-target="' + hash + '"]').addClass('active');
+      $(hash).tab('show');
+      $([document.documentElement, document.body]).animate({
+        scrollTop: $(hash).offset().top - 120
+      }, 300);
     });
   });
 

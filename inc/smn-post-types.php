@@ -297,6 +297,54 @@ if ( ! function_exists('custom_post_type_testimonio') ) {
 	
 }
 
+if ( ! function_exists('custom_post_type_oferta_empleo') ) {
+
+	// Register Custom Post Type
+	function custom_post_type_oferta_empleo() {
+	
+		$labels = array(
+			'name'                  => _x( 'Trabaja con nosotros', 'Post Type General Name', 'smn' ),
+			'singular_name'         => _x( 'Oferta de empleo', 'Post Type Singular Name', 'smn' ),
+			'menu_name'             => __( 'Ofertas de empleo', 'smn-admin' ),
+			'name_admin_bar'        => __( 'Ofertas de empleo', 'smn-admin' ),
+			'add_new'               => __( 'Añadir nueva Oferta de empleo', 'smn-admin' ),
+			'new_item'              => __( 'Nueva Oferta de empleo', 'smn-admin' ),
+			'edit_item'             => __( 'Editar Oferta de empleo', 'smn-admin' ),
+			'update_item'           => __( 'Actualizar Oferta de empleo', 'smn-admin' ),
+			'view_item'             => __( 'Ver Oferta de empleo', 'smn-admin' ),
+			'view_items'            => __( 'Ver Ofertas de empleo', 'smn-admin' ),
+		);
+		$args = array(
+			'label'                 => __( 'Ofertas de empleo', 'smn' ),
+			'labels'                => $labels,
+			'supports'              => array( 'title', 'editor', 'author', 'excerpt', 'custom-fields', 'revisions', 'page-attributes' ),
+			'hierarchical'          => false,
+			'public'                => true,
+			'show_ui'               => true,
+			'show_in_menu'          => true,
+			'menu_position'         => 24,
+			'menu_icon'             => 'dashicons-admin-users',
+			'show_in_admin_bar'     => true,
+			'show_in_nav_menus'     => true,
+			'can_export'            => true,
+			'has_archive'           => true,
+			'exclude_from_search'   => false,
+			'publicly_queryable'    => true,
+			'capability_type'       => 'post',
+			'show_in_rest' 			=> true,
+			'taxonomies'			=> array(),
+			'rewrite'				=> array(
+				'slug'			=> __('trabaja-con-nosotros', 'smn' ),
+				'with_front'	=> false,
+			),
+);
+		register_post_type( 'oferta-empleo', $args );
+	
+	}
+	add_action( 'init', 'custom_post_type_oferta_empleo', 0 );
+	
+}
+
 if ( ! function_exists('cpt_content_fragment_function') ) {
 
 	// Register Custom Post Type

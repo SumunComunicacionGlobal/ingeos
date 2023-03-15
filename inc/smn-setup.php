@@ -36,16 +36,24 @@ function understrap_all_excerpts_get_more_link( $post_excerpt ) {
         if ( $post->post_excerpt != $post_excerpt )
     		$post_excerpt = $post_excerpt . ' [...]';
     
-        if ( 'publish' == $post->post_status ) {
-            
-            // $post_excerpt .= '<p><a class="btn btn-secondary understrap-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __( 'Read More...', 'understrap' ) . '</a></p>';
-            $post_excerpt .= '<div class="wp-block-buttons">';
-                $post_excerpt .= '<div class="wp-block-button is-style-plus">';
-                    $post_excerpt .= '<a class="wp-block-button__link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">';
-                        $post_excerpt .= __( 'Read More...', 'understrap' );
-                    $post_excerpt .= '</a>';
-                $post_excerpt .= '</div>';
-            $post_excerpt .= '</div>';
+            if ( 'publish' == $post->post_status ) {
+
+                if ( 'oferta-empleo' == $post->post_type ) {
+
+                    $post_excerpt .= '<p><span class="btn btn-outline-primary mr-1">' . __( 'Más detalles e inscripción', 'ingeos' ) . '</span></p>';
+
+                } else {
+
+                    // $post_excerpt .= '<p><a class="btn btn-secondary understrap-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __( 'Read More...', 'understrap' ) . '</a></p>';
+                    $post_excerpt .= '<div class="wp-block-buttons">';
+                        $post_excerpt .= '<div class="wp-block-button is-style-plus">';
+                            $post_excerpt .= '<a class="wp-block-button__link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">';
+                                $post_excerpt .= __( 'Read More...', 'understrap' );
+                            $post_excerpt .= '</a>';
+                        $post_excerpt .= '</div>';
+                    $post_excerpt .= '</div>';
+
+                }
 
             }
         }

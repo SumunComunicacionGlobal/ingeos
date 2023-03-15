@@ -37,12 +37,16 @@
 }
 
 .side-panel {
+	display: none;
+
 	position: fixed;
 	left: $spacer;
 	bottom: $spacer;
 	z-index: $zindex-fixed;
 
 	@include media-breakpoint-up(md) {
+		display: flex;
+		
 		top: 240px;
 		right: 0;
 		bottom: unset;
