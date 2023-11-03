@@ -18,15 +18,19 @@
 		@include media-breakpoint-up(lg) {
 
 			&:nth-child(2) {
-				flex-basis: 40%;
+				flex-basis: 25%;
 			}
 			
 			&:nth-child(3) {
-				flex-basis: 30%;
+				flex-basis: 25%;
 			}
 			
 			&:nth-child(4) {
-				flex-basis: 30%;
+				flex-basis: 25%;
+			}
+
+			&:nth-child(5) {
+				flex-basis: 25%;
 			}
 
 		}

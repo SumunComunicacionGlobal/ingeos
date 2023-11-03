@@ -167,12 +167,12 @@ sup {
 }
 
 a {
-  color: #192959;
+  color: #f2506e;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #080d1d;
+  color: #e51138;
   text-decoration: underline;
 }
 
@@ -2881,11 +2881,11 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #192959;
+  color: #f2506e;
   text-decoration: none;
 }
 .btn-link:hover {
-  color: #080d1d;
+  color: #e51138;
   text-decoration: underline;
 }
 .btn-link:focus, .btn-link.focus {
@@ -3958,13 +3958,13 @@ input[type=button].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #192959;
+  color: #f2506e;
   background-color: #fff;
   border: 1px solid #cdcdcd;
 }
 .page-link:hover {
   z-index: 2;
-  color: #080d1d;
+  color: #e51138;
   text-decoration: none;
   background-color: #e6e6e6;
   border-color: #cdcdcd;
@@ -9968,13 +9968,16 @@ body.scrolled #main-nav {
 }
 @media (min-width: 992px) {
   #wrapper-footer-full .footer-widget:nth-child(2) {
-    flex-basis: 40%;
+    flex-basis: 25%;
   }
   #wrapper-footer-full .footer-widget:nth-child(3) {
-    flex-basis: 30%;
+    flex-basis: 25%;
   }
   #wrapper-footer-full .footer-widget:nth-child(4) {
-    flex-basis: 30%;
+    flex-basis: 25%;
+  }
+  #wrapper-footer-full .footer-widget:nth-child(5) {
+    flex-basis: 25%;
   }
 }
 #wrapper-footer-full .footer-widget:nth-child(3) .menu > li {
